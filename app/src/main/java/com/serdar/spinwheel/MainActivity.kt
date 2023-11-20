@@ -24,21 +24,21 @@ class MainActivity : AppCompatActivity() {
         binding.customSpinWheel.setSpinCenterImage(R.drawable.ic_center_image)
         binding.customSpinWheel.setOnClickListener {
             binding.customSpinWheel.startSpinWheel(getRandomIndex())
-
+            binding.customSpinWheel.setCursorAnimate()
         }
     }
 
     private fun setSpinData() {
         data.add(
             WheelItem(
-                amount = "1000",
+                amount = "100",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fcdf03")
             )
         )
         data.add(
             WheelItem(
-                amount = "2500",
+                amount = "250",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fc6703")
             )
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "5000",
+                amount = "500",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fcdf03")
             )
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "7500",
+                amount = "750",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fcdf03")
             )
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "10000",
+                amount = "1000",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fc6703")
             )

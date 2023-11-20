@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import com.serdar.whell.R
 import com.serdar.whell.databinding.CustomWheelLayoutBinding
 
