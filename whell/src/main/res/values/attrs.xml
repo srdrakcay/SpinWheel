@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpinWheel">
+        <attr name="spinWheelBackgroundColor" format="color" />
+        <attr name="spinWheelCursor" format="reference" />
+        <attr name="spinWheelCenterImage" format="reference" />
+        <attr name="spinWheelTextColor" format="color" />
+    </declare-styleable>
+</resources>
