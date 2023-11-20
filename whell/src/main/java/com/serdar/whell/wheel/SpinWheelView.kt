@@ -18,9 +18,8 @@ constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0)
     FrameLayout(context, attributeSet, defStyleAttr), SpinWheelRotateListener {
     private var spinBackgroundColor = 0
     private var spinTextColor = 0
-    private var spinText = "Spin"
-    private var spinTextView: TextView? = null
-    private var spinCenterImage: Drawable? = null
+    private var spinCenterImage: Int? = null
+    private var spinWheelSpecialImage: Int? = null
     private var spinCursorImage: Drawable? = null
     private var spinView: CustomSpinWhellView? = null
     private var ivCursorView: ImageView? = null
@@ -42,18 +41,15 @@ constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0)
             spinTextColor =
                 typedArray.getColor(R.styleable.SpinWheel_spinWheelTextColor, Color.WHITE)
             spinCursorImage = typedArray.getDrawable(R.styleable.SpinWheel_spinWheelCursor)
-            spinCenterImage = typedArray.getDrawable(R.styleable.SpinWheel_spinWheelCenterImage)
             typedArray.recycle()
         }
 
         spinView = _binding.spinView
         ivCursorView = _binding.cursorView
-        spinTextView = _binding.spinText
-        spinTextView?.text = spinText
-        spinView?.setPieRotateListener(this)
-        spinView?.setPieBackgroundColor(spinBackgroundColor)
-        spinView?.setPieCenterImage(spinCenterImage)
-        spinView?.setPieTextColor(spinTextColor)
+        spinView?.setSpinRotateListener(this)
+        spinView?.setSpinBackgroundColor(spinBackgroundColor)
+        spinView?.setSpinCenterImage(spinCenterImage)
+        spinView?.setSpinTextColor(spinTextColor)
         ivCursorView?.setImageDrawable(spinCursorImage)
     }
 
@@ -65,8 +61,14 @@ constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0)
         spinView?.setRound(numberOfRound)
     }
 
-    fun setSpinText(text: String) {
-        spinTextView?.text = text
+
+    fun setSpinSpecialImage(specialImage: Int) {
+        spinWheelSpecialImage = specialImage
+        spinView?.setSpinSpecialImage(spinWheelSpecialImage)
+    }
+    fun setSpinCenterImage(spinWheelCenterImage: Int) {
+        spinCenterImage = spinWheelCenterImage
+        spinView?.setSpinCenterImage(spinWheelSpecialImage)
     }
 
     fun startSpinWheel(index: Int) {
