@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         binding.customSpinWheel.setSpinRound(getRandomRound())
         binding.customSpinWheel.setSpinSpecialImage(R.drawable.ic_special)
         binding.customSpinWheel.setSpinCenterImage(R.drawable.ic_center_image)
-
         binding.customSpinWheel.setOnClickListener {
             binding.customSpinWheel.startSpinWheel(getRandomIndex())
 
@@ -72,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         data.add(
             WheelItem(
                 amount = "10000",
-                iconRes = R.drawable.ic_jackpot,
+                iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fc6703")
             )
         )

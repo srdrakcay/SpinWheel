@@ -8,9 +8,10 @@
 
     <com.serdar.whell.wheel.CustomSpinWhellView
         android:id="@+id/spinView"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="650dp"
-        android:layout_gravity="center"
+        android:layout_gravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +21,10 @@
 
     <ImageView
         android:id="@+id/cursorView"
-        android:layout_width="47dp"
-        android:layout_height="33dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_cursor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
