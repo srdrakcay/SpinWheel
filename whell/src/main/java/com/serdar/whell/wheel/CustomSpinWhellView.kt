@@ -56,12 +56,10 @@ class CustomSpinWhellView : View {
         mArcPaint = Paint()
         mArcPaint?.isAntiAlias = true
         mArcPaint?.isDither = true
-
         mTextPaint = Paint()
         val screenSize = resources.displayMetrics
         val screenDensity = screenSize.density
         val desiredSpSize = 18f
-
         val textSizeInPixels = (desiredSpSize * screenDensity)
 
         mTextPaint?.textSize = textSizeInPixels
@@ -73,7 +71,6 @@ class CustomSpinWhellView : View {
             (mPadding + mRadius).toFloat() ,
             (mPadding + mRadius).toFloat()
         )
-
         strokePaint.isAntiAlias = true
         strokePaint.color = Color.BLACK
         strokePaint.style = Paint.Style.STROKE
@@ -103,18 +100,7 @@ class CustomSpinWhellView : View {
 
 
     private fun drawBitmapOutsideArc(canvas: Canvas, bitmap: Bitmap) {
-        val radius = mRadius.toFloat()
-        val scaledBitmap = Bitmap.createScaledBitmap(bitmap,  mCenter+radius.toInt(),  mCenter+radius.toInt(), true)
-        val x = mCenter
-        val y = mCenter
-        val bitmapWidth = scaledBitmap.width
-        val bitmapHeight = scaledBitmap.height
-        val left = x - bitmapWidth / 2
-        val top = y - bitmapHeight / 2
-        val right = left + bitmapWidth
-        val bottom = top + bitmapHeight
-        val destRect = Rect(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
-        canvas.drawBitmap(scaledBitmap, null, destRect, null)
+
     }
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -124,39 +110,51 @@ class CustomSpinWhellView : View {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (mLuckyItemList == null) {
-            return
-        }
-        setOnDraw(canvas)
-        canvas.restore()
-    }
-    private fun setOnDraw(canvas: Canvas){
         drawBackgroundColor(canvas, Color.BLACK)
-        val options = BitmapFactory.Options()
-        options.inSampleSize = 2
-        val bitmap= BitmapFactory.decodeResource(resources, R.drawable.ic_bg_wheel,options)
+        drawOutsideBitmap(canvas)
         var tmpAngle = mStartAngle
         val sweepAngle = (360 / mLuckyItemList!!.size).toFloat()
         for (i in mLuckyItemList!!.indices) {
             setTextPaint(i)
             mArcPaint!!.color = mLuckyItemList!![i].color
-            drawArc(canvas, i, tmpAngle, sweepAngle)
-            drawProductImage(mLuckyItemList,i, canvas,tmpAngle)
+            drawArc(canvas, tmpAngle, sweepAngle)
+            drawSpinProductImage(mLuckyItemList,i, canvas,tmpAngle)
             drawVerticalReText(i, canvas, tmpAngle, sweepAngle)
+            drawStrokeArc(canvas, tmpAngle, sweepAngle)
             tmpAngle += sweepAngle
         }
-        drawBitmapOutsideArc(canvas, bitmap)
+    }
+    private fun drawOutsideBitmap(canvas:Canvas){
+        val options = BitmapFactory.Options()
+        options.inSampleSize = 2
+        val bitmap= BitmapFactory.decodeResource(resources, R.drawable.ic_bg_wheel,options)
+        bitmap.runIfSafe{
+            val radius = mRadius.toFloat()
+            val scaledBitmap = Bitmap.createScaledBitmap(it,  mCenter+radius.toInt(),  mCenter+radius.toInt(), true)
+            val x = mCenter
+            val y = mCenter
+            val bitmapWidth = scaledBitmap.width
+            val bitmapHeight = scaledBitmap.height
+            val left = x - bitmapWidth / 2
+            val top = y - bitmapHeight / 2
+            val right = left + bitmapWidth
+            val bottom = top + bitmapHeight
+            val destRect = Rect(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
+            canvas.drawBitmap(scaledBitmap, null, destRect, null)
+        }
+    }
+    private fun drawStrokeArc(canvas: Canvas,tmpAngle: Float,sweepAngle: Float){
+        canvas.drawArc(mRange, tmpAngle, sweepAngle, true, strokePaint)
     }
     private fun drawVerticalReText(i:Int, canvas: Canvas, tmpAngle:Float, sweepAngle:Float){
         if (i==3){
             drawVerticalText(canvas,tmpAngle,sweepAngle,mLuckyItemList!![i].text)
-            //  drawRespinText(canvas, tmpAngle, sweepAngle, mLuckyItemList!![i].text)
         }else{
             drawText(canvas, tmpAngle, sweepAngle, mLuckyItemList!![i].text)
         }
 
     }
-    private fun drawProductImage(mLuckyItemList: List<WheelItem>?, i:Int, canvas: Canvas, tmpAngle:Float){
+    private fun drawSpinProductImage(mLuckyItemList: List<WheelItem>?, i:Int, canvas: Canvas, tmpAngle:Float){
         mLuckyItemList?.let {
             if (i==5){
                 drawStarImage(canvas,tmpAngle, BitmapFactory.decodeResource(resources,
@@ -170,15 +168,9 @@ class CustomSpinWhellView : View {
             }
         }
     }
-    private fun drawArc(canvas: Canvas, i: Int, tmpAngle:Float, sweepAngle:Float){
-        if (i==5){
-            val paint= Paint()
-            canvas.drawArc(mRange, tmpAngle, sweepAngle , true, paint!!)
-            canvas.drawArc(mRange, tmpAngle, sweepAngle, true, strokePaint)
-        }else{
-            canvas.drawArc(mRange, tmpAngle, sweepAngle , true, mArcPaint!!)
-            canvas.drawArc(mRange, tmpAngle, sweepAngle, true, strokePaint)
-        }
+    private fun drawArc(canvas: Canvas, tmpAngle:Float, sweepAngle:Float){
+        canvas.drawArc(mRange, tmpAngle, sweepAngle , true, mArcPaint!!)
+
     }
     private fun setTextPaint(i:Int){
         when(i){
@@ -187,7 +179,6 @@ class CustomSpinWhellView : View {
             }
             5->{
                 mTextPaint?.color= Color.WHITE
-
             }
             else->{
                 mTextPaint?.color= Color.BLACK
@@ -224,7 +215,6 @@ class CustomSpinWhellView : View {
             mCenter.toFloat() , mCenter.toFloat() , mCenter.toFloat() ,
             mBackgroundPaint!!
         )
-
     }
 
 

@@ -76,10 +76,12 @@ constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0)
     fun setCursorAnimate() {
         spinView?.setCursorAnimate(ivCursorView!!)
     }
-
+    fun setSpinRoundItemSelectedListener(listener: SpinWheelRoundSelectedListener?) {
+        spinWheelRoundSelectedListener = listener
+    }
     override fun rotateDone(index: Int) {
         if (spinWheelRoundSelectedListener != null) {
-            spinWheelRoundSelectedListener?.wheelRoundItemSelected(index)
+            spinWheelRoundSelectedListener?.selectedRoundItemSelected(index)
         }
     }
 
