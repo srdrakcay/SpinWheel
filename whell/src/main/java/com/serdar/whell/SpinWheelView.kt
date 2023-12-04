@@ -1,4 +1,4 @@
-package com.serdar.whell.wheel
+package com.serdar.whell
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
-import com.serdar.whell.R
 import com.serdar.whell.databinding.CustomWheelLayoutBinding
 
 @SuppressLint("CustomViewStyleable")

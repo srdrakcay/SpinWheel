@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.serdar.whell.wheel.SpinWheelView
+    <com.serdar.whell.SpinWheelView
         android:id="@+id/customSpinWheel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

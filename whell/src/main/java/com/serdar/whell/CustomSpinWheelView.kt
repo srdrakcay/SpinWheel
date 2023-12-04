@@ -1,4 +1,4 @@
-package com.serdar.whell.wheel
+package com.serdar.whell
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -18,7 +18,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
-import com.serdar.whell.R
 import kotlin.math.cos
 import kotlin.math.sin
 

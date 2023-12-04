@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.serdar.spinwheel.databinding.ActivityMainBinding
 import com.serdar.whell.R
-import com.serdar.whell.wheel.SpinWheelRoundSelectedListener
-import com.serdar.whell.wheel.WheelItem
+import com.serdar.whell.SpinWheelRoundSelectedListener
+import com.serdar.whell.WheelItem
 import java.util.Random
 
 class MainActivity : AppCompatActivity() {

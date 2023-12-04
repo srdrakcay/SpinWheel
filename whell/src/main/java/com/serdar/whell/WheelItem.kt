@@ -1,4 +1,4 @@
-package com.serdar.whell.wheel
+package com.serdar.whell
 
 data class WheelItem(
     var credit:String,
