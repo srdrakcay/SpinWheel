@@ -15,12 +15,11 @@ import com.serdar.whell.databinding.CustomWheelLayoutBinding
 class SpinWheelView @JvmOverloads
 constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0) :
     FrameLayout(context, attributeSet, defStyleAttr), SpinWheelRotateListener {
-    private var spinBackgroundColor = 0
     private var spinTextColor = 0
     private var spinCenterImage: Int? = null
-    private var spinWheelSpecialImage: Int? = null
+    private var spinWheelSpecialImage: Drawable? = null
     private var spinCursorImage: Drawable? = null
-    private var spinView: CustomSpinWhellView? = null
+    private var spinView: CustomSpinWheelView? = null
     private var ivCursorView: ImageView? = null
     private var spinWheelRoundSelectedListener: SpinWheelRoundSelectedListener? = null
 
@@ -35,45 +34,33 @@ constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0)
     private fun setAttr(ctx: Context, attrs: AttributeSet?) {
         if (attrs != null) {
             val typedArray = ctx.obtainStyledAttributes(attrs, R.styleable.SpinWheel)
-            spinBackgroundColor =
-                typedArray.getColor(R.styleable.SpinWheel_spinWheelBackgroundColor, -0x340000)
             spinTextColor =
                 typedArray.getColor(R.styleable.SpinWheel_spinWheelTextColor, Color.WHITE)
             spinCursorImage = typedArray.getDrawable(R.styleable.SpinWheel_spinWheelCursor)
             typedArray.recycle()
-        }
 
+        }
         spinView = _binding.spinView
         ivCursorView = _binding.cursorView
         spinView?.setSpinRotateListener(this)
-        spinView?.setSpinBackgroundColor(spinBackgroundColor)
         spinView?.setSpinCenterImage(spinCenterImage)
         spinView?.setSpinTextColor(spinTextColor)
         ivCursorView?.setImageDrawable(spinCursorImage)
+        spinWheelSpecialImage?.let { spinView?.setSpinSpecialImage(it) }
     }
-
     fun setSpinData(data: List<WheelItem>?) {
         spinView?.setData(data)
     }
-
     fun setSpinRound(numberOfRound: Int) {
         spinView?.setRound(numberOfRound)
     }
-
-
-    fun setSpinSpecialImage(specialImage: Int) {
-        spinWheelSpecialImage = specialImage
-        spinView?.setSpinSpecialImage(spinWheelSpecialImage)
-    }
     fun setSpinCenterImage(spinWheelCenterImage: Int) {
         spinCenterImage = spinWheelCenterImage
-        spinView?.setSpinCenterImage(spinWheelSpecialImage)
+        spinView?.setSpinCenterImage(spinCenterImage)
     }
-
     fun startSpinWheel(index: Int) {
-        spinView?.rotateTo(index)
+        spinView?.startRotate(index)
     }
-
     fun setCursorAnimate() {
         spinView?.setCursorAnimate(ivCursorView!!)
     }

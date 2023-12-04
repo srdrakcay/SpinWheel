@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setSpinData()
         binding.customSpinWheel.setSpinData(data)
         binding.customSpinWheel.setSpinRound(getRandomRound())
-        binding.customSpinWheel.setSpinSpecialImage(R.drawable.ic_special)
         binding.customSpinWheel.setSpinCenterImage(R.drawable.ic_center_image)
         binding.customSpinWheel.setOnClickListener {
             binding.customSpinWheel.startSpinWheel(getRandomIndex())
