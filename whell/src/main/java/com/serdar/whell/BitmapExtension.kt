@@ -11,6 +11,7 @@ fun Bitmap?.runIfSafe(function: (Bitmap) -> Unit) {
     if (isRecycled.not()) {
         function(this)
     }
+
 }
 fun Drawable.toBitmap(): Bitmap {
     if (this is BitmapDrawable) {
