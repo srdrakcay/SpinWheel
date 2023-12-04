@@ -1,7 +1,7 @@
 package com.serdar.whell.wheel
 
 data class WheelItem(
-    var amount:String,
+    var credit:String,
     val iconRes:Int,
     var color:Int
 )

@@ -95,7 +95,6 @@ class CustomSpinWheelView : View {
         init()
     }
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         drawBackgroundColor(canvas)
@@ -121,8 +120,8 @@ class CustomSpinWheelView : View {
         bitmap.runIfSafe {
             val scaledBitmap = Bitmap.createScaledBitmap(
                 it,
-                center + radius.toInt(),
-                center + radius.toInt(),
+                center + radius,
+                center + radius,
                 true
             )
             val x = center
@@ -133,7 +132,7 @@ class CustomSpinWheelView : View {
             val top = y - bitmapHeight / HALF_ALL
             val right = left + bitmapWidth
             val bottom = top + bitmapHeight
-            val destRect = Rect(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
+            val destRect = Rect(left, top, right, bottom)
             canvas.drawBitmap(scaledBitmap, null, destRect, null)
         }
     }
@@ -144,11 +143,12 @@ class CustomSpinWheelView : View {
 
     private fun drawVerticalReText(i: Int, canvas: Canvas, tmpAngle: Float, sweepAngle: Float) {
         if (i == 3) {
-            drawVerticalText(canvas, tmpAngle, sweepAngle, spinWheelItemList!![i].amount)
+            drawVerticalText(canvas, tmpAngle, sweepAngle, spinWheelItemList!![i].credit)
         } else {
-            drawText(canvas, tmpAngle, sweepAngle, spinWheelItemList!![i].amount)
+            drawText(canvas, tmpAngle, sweepAngle, spinWheelItemList!![i].credit)
         }
     }
+
     private fun drawCenterImage(canvas: Canvas) {
         val bitmap = drawableCenterImage?.let {
             BitmapFactory.decodeResource(
@@ -245,7 +245,7 @@ class CustomSpinWheelView : View {
         val width = measuredWidth.coerceAtMost(measuredHeight)
         padding = if (paddingLeft == 0) 50 else paddingLeft
         radius = width - padding * HALF_ALL
-        center = width / 2
+        center = width / HALF_ALL
         circleCenter = measuredHeight
         setMeasuredDimension(width, width)
     }
@@ -350,7 +350,6 @@ class CustomSpinWheelView : View {
             .setInterpolator(DecelerateInterpolator())
             .setDuration(roundOfNumber * 250 + 2000L)
             .setListener(object : WheelContract() {
-
                 override fun onAnimationStart(animation: Animator) {
                     isRunning = true
                     setLayerType(LAYER_TYPE_HARDWARE, spinArcPaint)

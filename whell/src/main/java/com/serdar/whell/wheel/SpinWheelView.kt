@@ -69,7 +69,7 @@ constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int = 0)
     }
     override fun rotateDone(index: Int) {
         if (spinWheelRoundSelectedListener != null) {
-            spinWheelRoundSelectedListener?.selectedRoundItemSelected(index)
+            spinWheelRoundSelectedListener?.roundItemSelected(index)
         }
     }
 

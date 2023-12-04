@@ -22,22 +22,22 @@ class MainActivity : AppCompatActivity() {
         binding.customSpinWheel.setSpinRound(getRandomRound())
         binding.customSpinWheel.setSpinCenterImage(R.drawable.ic_center_image)
         binding.customSpinWheel.setOnClickListener {
-            binding.customSpinWheel.startSpinWheel(getRandomIndex())
-            binding.customSpinWheel.setCursorAnimate()
+        binding.customSpinWheel.startSpinWheel(getRandomIndex())
+        binding.customSpinWheel.setCursorAnimate()
         }
     }
 
     private fun setSpinData() {
         data.add(
             WheelItem(
-                amount = "100",
+                credit = "100",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fcdf03")
             )
         )
         data.add(
             WheelItem(
-                amount = "250",
+                credit = "250",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fc6703")
             )
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "500",
+                credit = "500",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fcdf03")
             )
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "RESPIN",
+                credit = "RESPIN",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fc6703")
             )
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "750",
+                credit = "750",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fcdf03")
             )
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         data.add(
             WheelItem(
-                amount = "1000",
+                credit = "1000",
                 iconRes = R.drawable.ic_money,
                 color = Color.parseColor("#fc6703")
             )
@@ -80,40 +80,40 @@ class MainActivity : AppCompatActivity() {
     private fun wheelListener() {
         binding.customSpinWheel.setSpinRoundItemSelectedListener(object :
             SpinWheelRoundSelectedListener {
-            override fun selectedRoundItemSelected(index: Int) {
+            override fun roundItemSelected(index: Int) {
                 when (index) {
                     1 -> {
-                        Toast.makeText(this@MainActivity, data[0].amount, Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, data[0].credit, Toast.LENGTH_SHORT)
                             .show()
                     }
 
                     2 -> {
-                        Toast.makeText(this@MainActivity, data[1].amount, Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, data[1].credit, Toast.LENGTH_SHORT)
                             .show()
 
 
                     }
 
                     3 -> {
-                        Toast.makeText(this@MainActivity, data[2].amount, Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, data[2].credit, Toast.LENGTH_SHORT)
                             .show()
 
                     }
 
                     4 -> {
-                        Toast.makeText(this@MainActivity, data[3].amount, Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, data[3].credit, Toast.LENGTH_SHORT)
                             .show()
 
                     }
 
                     5 -> {
-                        Toast.makeText(this@MainActivity, data[4].amount, Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, data[4].credit, Toast.LENGTH_SHORT)
                             .show()
 
                     }
 
                     6 -> {
-                        Toast.makeText(this@MainActivity, data[5].amount, Toast.LENGTH_SHORT)
+                        Toast.makeText(this@MainActivity, data[5].credit, Toast.LENGTH_SHORT)
                             .show()
                     }
 
@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRandomIndex(): Int {
-        val ind = intArrayOf(1, 2, 3, 4, 5,6)
+        val ind = intArrayOf(1, 2, 3, 4, 5, 6)
         val rand = Random().nextInt(ind.size)
         return ind[rand]
     }
